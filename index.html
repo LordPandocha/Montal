@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#111211">
-  <meta name="description" content="MONTAL by Maria Manukyan — White Glove, премиальный клининг, и наставничество по запуску клинингового бизнеса.">
-  <meta property="og:title" content="MONTAL — White Glove / Mentorship">
-  <meta property="og:description" content="Пространство безупречного сервиса. Бизнес по понятной системе.">
-  <title>MONTAL — White Glove / Mentorship</title>
+  <meta name="description" content="Мария Манукян и MONTAL: White Glove — премиальный клининг; наставничество — запуск и организация клинингового бизнеса.">
+  <meta property="og:title" content="Мария Манукян — MONTAL">
+  <meta property="og:description" content="Мария Манукян: White Glove для пространства и наставничество для тех, кто строит клининговый бизнес.">
+  <title>Мария Манукян — MONTAL</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
@@ -195,6 +195,34 @@
     .reveal { opacity: 0; transform: translateY(24px); filter: blur(5px); transition: opacity .8s var(--ease), transform .8s var(--ease), filter .8s var(--ease); }
     .reveal.in-view { opacity: 1; transform: translateY(0); filter: blur(0); }
     .delay-1 { transition-delay: .08s; }.delay-2 { transition-delay: .16s; }.delay-3 { transition-delay: .24s; }
+    .hero { min-height: auto; padding-top: 78px; }
+    .founder-layout { min-height: calc(100svh - 150px); padding: clamp(38px, 5vw, 76px) var(--page-pad) clamp(48px, 6vw, 86px); display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(280px, .76fr); align-items: center; gap: clamp(38px, 7vw, 110px); }
+    .founder-copy { max-width: 790px; }
+    .founder-copy .eyebrow { color: var(--gold-light); margin-bottom: 22px; }
+    .founder-title { font-family: var(--serif); font-weight: 400; font-size: clamp(3.4rem, 6.4vw, 7rem); line-height: .91; letter-spacing: -.04em; margin: 0; }
+    .founder-title em { color: var(--gold-light); font-weight: 400; }
+    .founder-description { max-width: 510px; color: #b7b6ad; font-size: 13px; line-height: 1.95; margin: 25px 0 0; }
+    .founder-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 30px; }
+    .button-outline { color: var(--white); background: transparent; border-color: rgba(245,242,232,.3); }
+    .button-outline:hover { background: rgba(245,242,232,.08); color: var(--white); }
+    .founder-signature { display: flex; align-items: center; gap: 13px; margin-top: 32px; color: #92938b; font-size: 9px; letter-spacing: .15em; text-transform: uppercase; }
+    .founder-signature::before { content: ""; width: 34px; height: 1px; background: var(--gold); }
+    .portrait-placeholder { position: relative; min-height: clamp(390px, 51vw, 650px); max-height: 680px; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; padding: 22px; border: 1px solid rgba(200,169,110,.42); background: radial-gradient(ellipse at 52% 35%, rgba(200,169,110,.18), transparent 37%), linear-gradient(145deg, #383831 0%, #20211d 47%, #141513 100%); }
+    .portrait-placeholder::before, .portrait-placeholder::after { content: ""; position: absolute; pointer-events: none; border: 1px solid rgba(200,169,110,.2); border-radius: 50%; width: 76%; aspect-ratio: 1; left: 12%; top: 14%; }
+    .portrait-placeholder::after { width: 58%; left: 21%; top: 23%; border-color: rgba(244,241,233,.12); }
+    .portrait-topline, .portrait-bottomline { position: relative; z-index: 1; display: flex; justify-content: space-between; gap: 12px; color: #c8b993; font-size: 8px; letter-spacing: .15em; text-transform: uppercase; }
+    .portrait-monogram { position: relative; z-index: 1; align-self: center; font-family: var(--serif); font-size: clamp(7rem, 15vw, 13rem); font-weight: 400; line-height: .85; letter-spacing: -.07em; color: rgba(239,238,232,.8); }
+    .portrait-bottomline { align-items: end; color: #aaa99f; line-height: 1.7; }
+    .portrait-bottomline strong { display: block; color: var(--white); font-size: 10px; font-weight: 500; }
+    .founder-divider { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 20px var(--page-pad) 25px; border-top: 1px solid var(--line); color: #8d8e85; font-size: 9px; text-transform: uppercase; letter-spacing: .16em; }
+    .founder-divider span:last-child { color: var(--gold-light); }
+    .split-intro { padding: clamp(50px, 7vw, 92px) var(--page-pad) 34px; }
+    .split-intro .section-label { margin-bottom: 14px; }
+    .split-intro h2 { max-width: 850px; font-family: var(--serif); font-size: clamp(2.7rem, 5.5vw, 5.2rem); font-weight: 400; line-height: .95; letter-spacing: -.03em; margin: 0; }
+    .split-intro h2 em { color: var(--gold-light); }
+    .split { min-height: 0; }
+    .split-panel { min-height: clamp(400px, 40vw, 570px); }
+    .hero-bottom { border-bottom: 1px solid var(--line); }
     @media (hover: hover) and (pointer: fine) {
       .split-panel { transition: flex .65s var(--ease); }
       .split:has(.split-cleaning.is-active) { grid-template-columns: 1.08fr .92fr; }
@@ -297,17 +325,48 @@
   </div>
 
   <main id="top">
-    <section class="hero" aria-labelledby="heroHeading">
+        <section class="hero" aria-labelledby="heroHeading">
       <div class="hero-topline">
-        <span><span class="spark">✳</span> Maria Manukyan / Montal</span>
-        <span id="heroHeading">Два направления · Один стандарт</span>
+        <span><span class="spark">✳</span> MONTAL / MARIA MANUKYAN</span>
+        <span id="heroHeading">Личный подход · Два направления</span>
       </div>
+
+      <div class="founder-layout">
+        <div class="founder-copy reveal">
+          <p class="eyebrow">Мария Манукян · MONTAL</p>
+          <h1 class="founder-title">Я помогаю создавать порядок — <em>в пространстве и в бизнесе.</em></h1>
+          <p class="founder-description">Я объединила в MONTAL два направления. White Glove — для тех, кому важны чистота, внимание к деталям и спокойствие за своё пространство. Наставничество — для тех, кто хочет разобраться, как запустить клининговый бизнес и выстроить понятную систему работы.</p>
+          <div class="founder-actions">
+            <a class="button" href="#white-glove">Мне нужен клининг <span>↗</span></a>
+            <a class="button button-outline" href="#mentorship">Хочу открыть бизнес <span>↗</span></a>
+          </div>
+          <div class="founder-signature">Мария Манукян / основатель MONTAL</div>
+        </div>
+
+        <aside class="portrait-placeholder reveal delay-1" aria-label="Место для настоящего портрета Марии Манукян">
+          <div class="portrait-topline"><span>Portrait / 01</span><span>Founder</span></div>
+          <div class="portrait-monogram" aria-hidden="true">М.</div>
+          <div class="portrait-bottomline"><span><strong>Мария Манукян</strong>Здесь будет её настоящий портрет</span><span>Заменить фото<br>перед запуском</span></div>
+        </aside>
+      </div>
+
+      <div class="founder-divider">
+        <span>White Glove — сервис</span>
+        <span>Два направления · Одна личная ответственность</span>
+        <span>Mentorship — бизнес</span>
+      </div>
+
+      <div class="split-intro reveal">
+        <p class="section-label">Чем я могу быть полезна</p>
+        <h2>Два направления. <em>Выберите свою задачу.</em></h2>
+      </div>
+
       <div class="split" id="splitHero">
         <article class="split-panel split-cleaning is-active" tabindex="0" data-panel="cleaning">
           <div class="panel-wash"></div>
           <div class="panel-content">
             <p class="eyebrow">01 / White Glove</p>
-            <h1 class="hero-title">Чистота, в которой важна <em>каждая деталь.</em></h1>
+            <h2 class="hero-title">Чистота, в которой важна <em>каждая деталь.</em></h2>
             <p class="panel-description">Премиальный клининг для пространства, в котором хочется находиться. Аккуратность в деталях — от поверхностей до финального результата.</p>
             <a class="button" href="#white-glove">Заказать White Glove <span>↗</span></a>
           </div>
@@ -323,9 +382,9 @@
         </article>
       </div>
       <div class="hero-bottom">
-        <span>White Glove — сервис</span>
-        <a class="scroll-cue" href="#white-glove">Исследовать направления</a>
-        <span>Mentorship — бизнес</span>
+        <span>Личный подход / Мария Манукян</span>
+        <a class="scroll-cue" href="#white-glove">Выбрать направление</a>
+        <span>MONTAL / White Glove · Mentorship</span>
       </div>
     </section>
 
@@ -333,9 +392,9 @@
       <div class="section-head reveal">
         <div>
           <p class="section-label">01 / White Glove · Premium cleaning</p>
-          <h2 class="section-title">Пространство должно выглядеть <em>безупречно.</em></h2>
+          <h2 class="section-title">White Glove. <em>Забота о вашем пространстве.</em></h2>
         </div>
-        <p class="section-intro">Клининг с акцентом на детали, поверхности и согласованный результат. Начнём с вашей задачи: обсудим объект, объём работ и удобное время.</p>
+        <p class="section-intro">Я создала White Glove для тех, кто ценит чистоту, аккуратность и внимание к деталям. Обсудим объект, объём работ и удобное время, чтобы заранее понимать ожидания и результат.</p>
       </div>
 
       <div class="before-after">
@@ -427,9 +486,9 @@
       <div class="section-head reveal">
         <div>
           <p class="section-label">02 / Mentorship · Business</p>
-          <h2 class="section-title">Клининг — это не только уборка. <em>Это бизнес.</em></h2>
+          <h2 class="section-title">Я делюсь тем, что помогает <em>выстроить бизнес.</em></h2>
         </div>
-        <p class="section-intro">От первых расчётов до организации процессов. Разберите, как открыть клининговое дело с нуля, найти клиентов, выстроить работу и понимать экономику компании.</p>
+        <p class="section-intro">В наставничестве я помогаю разложить запуск клинингового дела на понятные задачи: экономика, первые клиенты, стандарты, команда и управление. Без обещаний лёгких денег — с фокусом на решения, которые предстоит принять.</p>
       </div>
       <div class="section-cta reveal" style="border-top:1px solid var(--line);padding-top:25px;margin-top:0;margin-bottom:65px"><p style="font-size:clamp(1.4rem,2.8vw,2.6rem)">Не набор советов. Последовательность решений.</p><a class="button button-gold" href="#mentor-contact">Обсудить наставничество <span>↗</span></a></div>
 
