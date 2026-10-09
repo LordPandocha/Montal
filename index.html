@@ -856,8 +856,8 @@
       }
 
       window.addEventListener("resize", function () {
-        var rect = xrayFrame.getBoundingClientRect();
-        setLens(rect.width * Number(lensRange.value) / 100, rect.height / 2);
+        setCompare(compareRange.value);
+        updateRoadmap();
       });
     })();
   </script>
