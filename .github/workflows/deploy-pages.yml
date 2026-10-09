@@ -1,4 +1,4 @@
-name: Сборка и публикация MONTAL
+name: Сборка сайта MONTAL
 
 on:
   push:
@@ -6,19 +6,15 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 concurrency:
-  group: "pages"
+  group: montal-build
   cancel-in-progress: true
 
 jobs:
-  build-and-deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  build-and-sync:
+    if: ${{ github.event_name == 'workflow_dispatch' || !contains(github.event.head_commit.message, '[compiled site]') }}
     runs-on: ubuntu-latest
     steps:
       - name: Получить исходный код
@@ -35,16 +31,21 @@ jobs:
       - name: Собрать сайт
         run: npm run build
 
-      - name: Настроить GitHub Pages
-        uses: actions/configure-pages@v5
-        with:
-          enablement: true
+      - name: Синхронизировать готовые файлы для GitHub Pages
+        run: |
+          rm -rf assets
+          mkdir -p assets
+          cp -R dist/assets/. assets/
+          cp dist/index.html index.html
 
-      - name: Передать собранный сайт
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./dist
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html assets
 
-      - name: Опубликовать сайт
-        id: deployment
-        uses: actions/deploy-pages@v4
+          if git diff --cached --quiet; then
+            echo "Готовая версия уже синхронизирована."
+            exit 0
+          fi
+
+          git commit -m "Update compiled MONTAL site [compiled site]"
+          git push origin HEAD:main
