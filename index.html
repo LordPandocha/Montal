@@ -433,7 +433,7 @@
         <div class="xray-copy reveal">
           <p class="section-label">Detail view / 01</p>
           <h3>Один интерьер. Разница — в чистоте.</h3>
-          <p>Проведите линзой по изображению. Внутри круга показывается результат после уборки, за его пределами — исходное состояние.</p>
+          <p>Передвиньте разделитель: слева — исходное состояние, справа — результат после уборки. Можно тянуть ручку на фотографии или пользоваться ползунком ниже.</p>
           <div class="micro-note">Интерактивное сравнение</div>
         </div>
         <div class="reveal delay-1">
@@ -518,7 +518,7 @@
             <div><div class="result-label">Предварительная стоимость</div><p class="calc-price" id="calcPrice">Уточняется</p></div>
             <p class="calc-disclaimer" id="calcSummary" aria-live="polite">80 м² · Поддерживающая уборка</p>
           </div>
-          <a class="button" id="cleaningRequest" href="https://www.instagram.com/maria.manukyannn/" target="_blank" rel="noreferrer">Обсудить мой объект <span>↗</span></a>
+          <a class="button" id="cleaningRequest" href="https://www.instagram.com/maria.manukyannn/" target="_blank" rel="noreferrer">Уточнить стоимость в Instagram <span>↗</span></a>
         </form>
       </div>
 
@@ -774,8 +774,8 @@
       areaRange.addEventListener("input", function () {
         updateCalculator(areaRange.value);
       });
-      areaInput.addEventListener("input", function () {
-        if (areaInput.value !== "") updateCalculator(areaInput.value);
+      areaInput.addEventListener("change", function () {
+        updateCalculator(areaInput.value);
       });
       areaInput.addEventListener("blur", function () {
         updateCalculator(areaInput.value);
