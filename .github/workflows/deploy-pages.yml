@@ -1,4 +1,4 @@
-name: Deploy MONTAL to GitHub Pages
+name: Сборка и публикация MONTAL
 
 on:
   push:
@@ -15,22 +15,36 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  deploy:
+  build-and-deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Получить исходный код
         uses: actions/checkout@v4
-      - name: Configure Pages
+
+      - name: Подготовить Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Установить зависимости
+        run: npm install --no-audit --no-fund
+
+      - name: Собрать сайт
+        run: npm run build
+
+      - name: Настроить GitHub Pages
         uses: actions/configure-pages@v5
         with:
           enablement: true
-      - name: Upload site files
+
+      - name: Передать собранный сайт
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .
-      - name: Deploy
+          path: ./dist
+
+      - name: Опубликовать сайт
         id: deployment
         uses: actions/deploy-pages@v4
