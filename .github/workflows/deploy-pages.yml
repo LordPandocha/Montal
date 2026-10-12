@@ -1,47 +1,24 @@
-name: Сборка сайта WhiteGlow
+name: Проверка White Glove
 
 on:
   push:
-    branches: ["main"]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
-  contents: write
-
-concurrency:
-  group: whiteglow-build
-  cancel-in-progress: true
+  contents: read
 
 jobs:
-  build-and-sync:
-    if: ${{ github.event_name == 'workflow_dispatch' || !contains(github.event.head_commit.message, '[compiled site]') }}
+  check:
     runs-on: ubuntu-latest
     steps:
       - name: Получить исходный код
         uses: actions/checkout@v4
-      - name: Подготовить исходную HTML-страницу
-        run: cp src/index.template.html index.html
-      - name: Подготовить Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-      - name: Установить зависимости
-        run: npm install --no-audit --no-fund
-      - name: Собрать сайт
-        run: npm run build
-      - name: Синхронизировать готовые файлы для GitHub Pages
+      - name: Проверить статическую страницу
         run: |
-          rm -rf assets instagram
-          mkdir -p assets
-          cp -R dist/assets/. assets/
-          cp -R dist/instagram instagram
-          cp dist/index.html index.html
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add index.html assets instagram
-          if git diff --cached --quiet; then
-            echo "Готовая версия уже синхронизирована."
-            exit 0
-          fi
-          git commit -m "Update compiled WhiteGlow site [compiled site]"
-          git push origin HEAD:main
+          test -s index.html
+          test -s styles.css
+          test -s app.js
+          test -s instagram/maria.jpg
+          test -s instagram/commercial.jpg
+          node --check app.js
