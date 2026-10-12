@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 
 const MESSAGE_URL = "https://ig.me/m/maria.manukyannn";
+const PROFILE_URL = "https://www.instagram.com/cleaning_white_glove/";
 
 function Reveal({ children, className = "", delay = 0 }) {
   const reduced = useReducedMotion();
@@ -368,7 +369,7 @@ function App() {
         <div className="footer__inner section-wrap">
           <Brand />
           <p>Мария Манукян <span>·</span> Наставничество в клининговом бизнесе</p>
-          <a className="footer__instagram" href={MESSAGE_URL} target="_blank" rel="noreferrer">Instagram <span aria-hidden="true">↗</span></a>
+          <a className="footer__instagram" href={PROFILE_URL} target="_blank" rel="noreferrer" aria-label="Профиль Cleaning White Glove в Instagram">Профиль в Instagram <span aria-hidden="true">↗</span></a>
           <span className="footer__copyright">© WhiteGlow</span>
         </div>
       </footer>
