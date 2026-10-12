@@ -2,6 +2,28 @@ const root = document.documentElement;
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const revealItems = document.querySelectorAll("[data-reveal]");
 
+document.querySelectorAll("h1, h2").forEach((heading) => {
+  const walker = document.createTreeWalker(heading, NodeFilter.SHOW_TEXT);
+  const nodes = [];
+  while (walker.nextNode()) nodes.push(walker.currentNode);
+  let index = 0;
+  nodes.forEach((node) => {
+    const fragment = document.createDocumentFragment();
+    node.textContent.split(/(\s+)/).forEach((word) => {
+      if (!word.trim()) return fragment.append(document.createTextNode(word));
+      const mask = document.createElement("span");
+      const inner = document.createElement("span");
+      mask.className = "word-mask";
+      inner.className = "word-motion";
+      inner.style.setProperty("--word-delay", `${index++ * 65}ms`);
+      inner.textContent = word;
+      mask.append(inner);
+      fragment.append(mask);
+    });
+    node.replaceWith(fragment);
+  });
+});
+
 if ("IntersectionObserver" in window && !reducedMotion.matches) {
   root.classList.add("has-motion");
   const observer = new IntersectionObserver((entries, activeObserver) => {
@@ -71,3 +93,71 @@ window.addEventListener("scroll", () => {
 }, { passive: true });
 
 updateProgress();
+
+const motionTargets = document.querySelectorAll(".hero-visual,.case-image,.motion-ribbon,.final-cta,.mentor-signature");
+const visibleMotion = new Set();
+let motionFrame = 0;
+
+function renderMotion() {
+  motionFrame = 0;
+  if (document.hidden || reducedMotion.matches) return;
+  const height = window.innerHeight;
+  const positions = [...visibleMotion].map((element) => {
+    const rect = element.getBoundingClientRect();
+    return [element, Math.max(-1, Math.min(1, (height / 2 - rect.top - rect.height / 2) / height))];
+  });
+  positions.forEach(([element, position]) => {
+    element.style.setProperty("--scroll-shift", `${position * 70}px`);
+    element.style.setProperty("--scroll-turn", `${position * 7}deg`);
+  });
+}
+
+function scheduleMotion() {
+  if (!motionFrame && !document.hidden && !reducedMotion.matches) {
+    motionFrame = requestAnimationFrame(renderMotion);
+  }
+}
+
+if ("IntersectionObserver" in window) {
+  const motionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(({target, isIntersecting}) => {
+      target.classList.toggle("motion-active", isIntersecting);
+      if (isIntersecting) visibleMotion.add(target);
+      else visibleMotion.delete(target);
+    });
+    scheduleMotion();
+  }, {rootMargin: "80px"});
+  motionTargets.forEach((element) => motionObserver.observe(element));
+}
+
+window.addEventListener("scroll", scheduleMotion, {passive: true});
+window.addEventListener("resize", scheduleMotion, {passive: true});
+document.addEventListener("visibilitychange", scheduleMotion);
+reducedMotion.addEventListener?.("change", () => {
+  if (reducedMotion.matches) {
+    motionTargets.forEach((element) => {
+      element.style.removeProperty("--scroll-shift");
+      element.style.removeProperty("--scroll-turn");
+    });
+  } else scheduleMotion();
+});
+
+const finePointer = matchMedia("(hover: hover) and (pointer: fine)");
+document.querySelectorAll(".course-card,.review-quote").forEach((card) => {
+  let frame = 0;
+  card.addEventListener("pointermove", (event) => {
+    if (reducedMotion.matches || !finePointer.matches || frame) return;
+    frame = requestAnimationFrame(() => {
+      frame = 0;
+      const bounds = card.getBoundingClientRect();
+      card.style.setProperty("--tilt-x", `${-(event.clientY - bounds.top - bounds.height / 2) / bounds.height * 7}deg`);
+      card.style.setProperty("--tilt-y", `${(event.clientX - bounds.left - bounds.width / 2) / bounds.width * 7}deg`);
+    });
+  });
+  card.addEventListener("pointerleave", () => {
+    cancelAnimationFrame(frame);
+    frame = 0;
+    card.style.setProperty("--tilt-x", "0deg");
+    card.style.setProperty("--tilt-y", "0deg");
+  });
+});
