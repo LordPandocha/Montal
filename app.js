@@ -94,7 +94,7 @@ window.addEventListener("scroll", () => {
 
 updateProgress();
 
-const motionTargets = document.querySelectorAll(".hero-visual,.case-image,.motion-ribbon,.hero-mobile-ribbon,.final-cta,.mentor-signature");
+const motionTargets = document.querySelectorAll(".hero-visual,.case-image,.motion-ribbon,.hero-mobile-ribbon,.final-cta,.mentor-signature,.brand-teaser");
 const visibleMotion = new Set();
 let motionFrame = 0;
 
@@ -161,3 +161,32 @@ document.querySelectorAll(".course-card,.review-quote").forEach((card) => {
     card.style.setProperty("--tilt-y", "0deg");
   });
 });
+
+document.querySelectorAll(".hero-visual,.button").forEach((element) => {
+  let frame = 0;
+  let pointerX = 0;
+  let pointerY = 0;
+  element.addEventListener("pointermove", (event) => {
+    if (reducedMotion.matches || !finePointer.matches) return;
+    pointerX = event.clientX;
+    pointerY = event.clientY;
+    if (frame) return;
+    frame = requestAnimationFrame(() => {
+      frame = 0;
+      const bounds = element.getBoundingClientRect();
+      const x = (pointerX - bounds.left) / bounds.width;
+      const y = (pointerY - bounds.top) / bounds.height;
+      element.style.setProperty("--pointer-x", `${x * 100}%`);
+      element.style.setProperty("--pointer-y", `${y * 100}%`);
+      element.style.setProperty("--magnet-x", `${(x - .5) * 8}px`);
+      element.style.setProperty("--magnet-y", `${(y - .5) * 8}px`);
+    });
+  });
+  element.addEventListener("pointerleave", () => {
+    cancelAnimationFrame(frame);
+    frame = 0;
+    element.style.setProperty("--magnet-x", "0px");
+    element.style.setProperty("--magnet-y", "0px");
+  });
+});
+
