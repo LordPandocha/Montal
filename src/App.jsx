@@ -44,26 +44,33 @@ const directions = [
     linkText: "Обсудить развитие",  }
 ];
 
-const topics = [
+const courses = [
   {
     number: "01",
-    title: "Запуск и первые решения",
-    text: "Как подойти к старту, определить приоритеты и не распыляться на всё сразу."
+    name: "Групповой",
+    tag: "БАЗОВЫЙ ФОРМАТ",
+    format: "ONLINE",
+    duration: "1 месяц наставничества",
+    details: ["Без обратной связи", "Именная печать в подарок"],
+    featured: false
   },
   {
     number: "02",
-    title: "Клиенты и стоимость услуг",
-    text: "Поиск клиентов, подход к цене и расходы, которые важно учитывать."
+    name: "Индивидуальный",
+    tag: "БОЛЬШЕ ПОДДЕРЖКИ",
+    format: "ONLINE",
+    duration: "2 месяца наставничества",
+    details: ["Дополнительно 1 месяц с обратной связью", "Именная печать в подарок"],
+    featured: true
   },
   {
     number: "03",
-    title: "Команда и организация работы",
-    text: "Распределение задач, ежедневные процессы и точки, где нужны изменения."
-  },
-  {
-    number: "04",
-    title: "План развития",
-    text: "Как выделить главное и выстроить следующие шаги под свою ситуацию."
+    name: "VIP",
+    tag: "МАКСИМУМ ВНИМАНИЯ",
+    format: "ONLINE / OFFLINE",
+    duration: "2 месяца наставничества",
+    details: ["Практика на объекте с личным сопровождением", "Закупка пылесоса и парогенератора"],
+    featured: false
   }
 ];
 
@@ -96,7 +103,11 @@ const faqs = [
   },
   {
     question: "Что написать Марии в первый раз?",
-    answer: "Достаточно двух вещей: на каком вы этапе и что хотите решить. Подробную историю можно не готовить заранее."
+    answer: "Достаточно сказать, какой формат заинтересовал и что вы хотите уточнить. Подробную историю можно не готовить заранее."
+  },
+  {
+    question: "Где узнать стоимость обучения?",
+    answer: "Напишите Марии в Instagram — она расскажет об актуальной стоимости и условиях выбранного формата."
   }
 ];
 
@@ -122,14 +133,14 @@ function App() {
             <span /><span />
           </button>
           <nav id="site-navigation" className={"navigation" + (menuOpen ? " navigation--open" : "")} aria-label="Главное меню">
+            <a href="#courses" onClick={closeMenu}>Форматы обучения</a>
             <a href="#directions" onClick={closeMenu}>Ваш этап</a>
-            <a href="#topics" onClick={closeMenu}>С чем работаем</a>
             <a href="#process" onClick={closeMenu}>Как проходит</a>
             <a href="#about" onClick={closeMenu}>О наставничестве</a>
             <a className="navigation__mobile-cta" href={MESSAGE_URL} target="_blank" rel="noreferrer" onClick={closeMenu}>Написать Марии <span aria-hidden="true">↗</span></a>
           </nav>
           <a className="button button--nav" href={MESSAGE_URL} target="_blank" rel="noreferrer">
-            Обсудить задачу <span aria-hidden="true">↗</span>
+            Выбрать формат <span aria-hidden="true">↗</span>
           </a>
         </div>
       </header>
@@ -145,15 +156,15 @@ function App() {
             </Reveal>
             <Reveal delay={0.08}>
               <p className="hero__description">
-                Разберите свой бизнес с Марией Манукян — от первых шагов до развития уже работающей компании. Без универсальных схем: с фокусом на вашу ситуацию и ближайшие решения.
+                Обучение у Марии Манукян в трёх форматах — от группового участия до VIP-сопровождения. Выберите подходящий уровень поддержки и уточните условия напрямую.
               </p>
             </Reveal>
             <Reveal delay={0.12}>
               <div className="hero__actions">
-                <a className="button button--primary" href={MESSAGE_URL} target="_blank" rel="noreferrer">
-                  Разобрать мою ситуацию <span aria-hidden="true">↗</span>
+                <a className="button button--primary" href="#courses">
+                  Сравнить форматы <span aria-hidden="true">↓</span>
                 </a>
-                <a className="text-link" href="#directions">Найти свой этап <span aria-hidden="true">↓</span></a>
+                <a className="text-link" href={MESSAGE_URL} target="_blank" rel="noreferrer">Задать вопрос Марии <span aria-hidden="true">↗</span></a>
               </div>
             </Reveal>
             <Reveal delay={0.16}>
@@ -165,23 +176,20 @@ function App() {
           </div>
 
           <Reveal className="hero__visual" delay={0.1}>
-            <div className="hero-photo">
-              <img
-                src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=1500&q=85"
-                alt="Рабочий процесс профессиональной уборки в светлом интерьере"
-                fetchPriority="high"
-                decoding="async"
-                onError={(event) => { event.currentTarget.hidden = true; }}
-              />
-              <div className="hero-photo__veil" />
+            <div className="hero-photo hero-photo--brand" role="img" aria-label="Фирменная графика MONTAL">
+              <div className="hero-art__grid" aria-hidden="true" />
+              <div className="hero-art__orb hero-art__orb--large" aria-hidden="true" />
+              <div className="hero-art__orb hero-art__orb--small" aria-hidden="true" />
               <div className="hero-photo__topline">
                 <span>01 / MONTAL</span>
-                <span>START WITH CLARITY</span>
+                <span>ОБУЧЕНИЕ · 3 ФОРМАТА</span>
               </div>
+              <div className="hero-art__monogram" aria-hidden="true">M<span>.</span></div>
               <div className="hero-photo__caption">
                 <span className="hero-photo__caption-label">ВАШ СЛЕДУЮЩИЙ ШАГ</span>
-                <strong>Из идеи —<br />в систему.</strong>
+                <strong>Выберите<br />свой формат.</strong>
               </div>
+              <div className="hero-art__side-label" aria-hidden="true">ЯСНОСТЬ · ФОКУС · ДЕЙСТВИЕ</div>
             </div>
             <div className="hero-stamp" aria-label="Индивидуальный разбор и план действий">
               <span className="hero-stamp__ring">MONTAL · MONTAL · MONTAL ·</span>
@@ -196,11 +204,11 @@ function App() {
 
         <section className="signal-strip" aria-label="Формат наставничества">
           <div className="signal-strip__inner">
-            <div className="signal"><span className="signal__mark">01</span><span>Старт с нуля</span></div>
+            <div className="signal"><span className="signal__mark">01</span><span>Групповой формат</span></div>
             <span className="signal-strip__divider" aria-hidden="true" />
-            <div className="signal"><span className="signal__mark">02</span><span>Развитие компании</span></div>
+            <div className="signal"><span className="signal__mark">02</span><span>Индивидуальный формат</span></div>
             <span className="signal-strip__divider" aria-hidden="true" />
-            <div className="signal"><span className="signal__mark">03</span><span>План под вашу ситуацию</span></div>
+            <div className="signal"><span className="signal__mark">03</span><span>VIP-сопровождение</span></div>
           </div>
         </section>
 
@@ -238,32 +246,41 @@ function App() {
           </div>
         </section>
 
-        <section className="topics" id="topics">
-          <div className="topics__inner section-wrap">
-            <Reveal className="topics__intro">
-              <p className="eyebrow eyebrow--light"><span className="eyebrow__dot" /> Главные точки опоры</p>
-              <h2>Разложим по<br /><em>полкам.</em></h2>
-              <p>Не нужно решать всё сразу. Вместе определим, какой вопрос важнее всего именно сейчас, и начнём с него.</p>
-              <a className="text-link text-link--light" href={MESSAGE_URL} target="_blank" rel="noreferrer">Рассказать о задаче <span aria-hidden="true">↗</span></a>
-              <div className="topics__seal" aria-hidden="true">
-                <span>ЯСНОСТЬ</span><i /> <span>ФОКУС</span><i /> <span>ДЕЙСТВИЕ</span>
-              </div>
-            </Reveal>
-            <div className="topic-list">
-              {topics.map((topic, index) => (
-                <Reveal key={topic.number} delay={index * 0.045}>
-                  <article className="topic-item">
-                    <span className="topic-item__number">{topic.number}</span>
-                    <div className="topic-item__content">
-                      <h3>{topic.title}</h3>
-                      <p>{topic.text}</p>
-                    </div>
-                    <span className="topic-item__arrow" aria-hidden="true">↗</span>
-                  </article>
-                </Reveal>
-              ))}
-            </div>
+        <section className="courses section-wrap" id="courses">
+          <Reveal className="section-intro">
+            <p className="eyebrow"><span className="eyebrow__dot" /> Три формата участия</p>
+            <h2>Выберите уровень<br /><em>поддержки.</em></h2>
+            <p>Форматы отличаются сроком наставничества, обратной связью и степенью личного сопровождения.</p>
+          </Reveal>
+          <div className="course-grid">
+            {courses.map((course, index) => (
+              <Reveal key={course.number} delay={index * 0.06}>
+                <article className={"course-card" + (course.featured ? " course-card--featured" : "")}>
+                  <div className="course-card__top">
+                    <span className="course-card__number">{course.number}</span>
+                    <span className="course-card__tag">{course.tag}</span>
+                  </div>
+                  <div className="course-card__symbol" aria-hidden="true">
+                    <span className="course-card__orbit course-card__orbit--one" />
+                    <span className="course-card__orbit course-card__orbit--two" />
+                    <span className="course-card__symbol-mark">{course.number === "03" ? "V" : course.number === "02" ? "M" : "G"}<i>.</i></span>
+                  </div>
+                  <p className="course-card__format">{course.format}</p>
+                  <h3>{course.name}</h3>
+                  <p className="course-card__duration">{course.duration}</p>
+                  <ul>
+                    {course.details.map((detail) => (
+                      <li key={detail}><span aria-hidden="true">＋</span>{detail}</li>
+                    ))}
+                  </ul>
+                  <a className="button course-card__cta" href={MESSAGE_URL} target="_blank" rel="noreferrer">
+                    Уточнить стоимость <span aria-hidden="true">↗</span>
+                  </a>
+                </article>
+              </Reveal>
+            ))}
           </div>
+          <p className="courses__note">Актуальную стоимость и условия участия можно уточнить у Марии напрямую.</p>
         </section>
 
         <section className="process section-wrap" id="process">
