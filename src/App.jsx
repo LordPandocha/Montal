@@ -34,18 +34,14 @@ const directions = [
     title: "Есть идея. Нужен маршрут.",
     text: "Разберём первые решения: с чего начать, что подготовить до запуска и как превратить идею в последовательность понятных шагов.",
     className: "direction-card--start",
-    linkText: "Обсудить запуск",
-    message: "Здравствуйте, Мария! Хочу открыть клининговый бизнес. Можно обсудить с чего начать?"
-  },
+    linkText: "Обсудить запуск",  },
   {
     number: "02",
     tag: "ДЕЙСТВУЮЩИЙ БИЗНЕС",
     title: "Пора перейти на следующий этап.",
     text: "Посмотрим, что сейчас тормозит развитие, какие процессы стоит пересобрать и на чём сосредоточиться в первую очередь.",
     className: "direction-card--growth",
-    linkText: "Обсудить развитие",
-    message: "Здравствуйте, Мария! У меня уже есть клининговый бизнес. Хочу обсудить развитие компании."
-  }
+    linkText: "Обсудить развитие",  }
 ];
 
 const topics = [
@@ -175,6 +171,7 @@ function App() {
                 alt="Рабочий процесс профессиональной уборки в светлом интерьере"
                 fetchPriority="high"
                 decoding="async"
+                onError={(event) => { event.currentTarget.hidden = true; }}
               />
               <div className="hero-photo__veil" />
               <div className="hero-photo__topline">
@@ -232,7 +229,7 @@ function App() {
                   <p>{item.text}</p>
                   <a className="card-link" href={MESSAGE_URL} target="_blank" rel="noreferrer"
                     aria-label={item.linkText}
-                    onClick={() => {}}>
+                    >
                     {item.linkText} <span aria-hidden="true">↗</span>
                   </a>
                 </div>
