@@ -94,7 +94,7 @@ window.addEventListener("scroll", () => {
 
 updateProgress();
 
-const motionTargets = document.querySelectorAll(".hero-visual,.case-image,.motion-ribbon,.final-cta,.mentor-signature");
+const motionTargets = document.querySelectorAll(".hero-visual,.case-image,.motion-ribbon,.hero-mobile-ribbon,.final-cta,.mentor-signature");
 const visibleMotion = new Set();
 let motionFrame = 0;
 

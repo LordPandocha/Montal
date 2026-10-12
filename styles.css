@@ -359,3 +359,13 @@ h1,h2,h3,p,figure{margin-top:0}
 @keyframes button-sheen{to{left:135%}}
 @media(max-width:760px){.motion-ribbon{padding:17px 0}.hero-photo{rotate:0deg}.course-card{transform-style:flat}}
 @media(prefers-reduced-motion:reduce){.ribbon-track{animation:none}.word-motion{opacity:1!important;transform:none!important}.hero-photo,.case-image img,.mentor-signature>span{translate:none;rotate:none}.case-image{clip-path:none!important}}
+
+.hero-mobile-ribbon{display:none}
+.course-grid{grid-template-columns:repeat(2,minmax(0,1fr));max-width:1000px;margin-inline:auto}
+.course-card{min-height:350px}
+@media(max-width:760px){
+  .hero-mobile-ribbon{display:block;overflow:hidden;width:100%;padding:13px 0;background:#344333;color:#edf2df;border-radius:4px;transform:rotate(-1.5deg)}
+  .hero-mobile-ribbon .ribbon-track span{font-size:21px}
+  .motion-ribbon{display:none}
+  .course-grid{grid-template-columns:1fr}
+}
