@@ -29,7 +29,7 @@ const paths = [
 const courses = [
   { id: "01", name: "Групповой", length: "1 месяц", tagline: "Разобраться в основе", text: "Онлайн-обучение в самостоятельном темпе. Без обратной связи; именная печать — в подарок." },
   { id: "02", name: "Индивидуальный", length: "2 месяца", tagline: "Рядом на каждом шаге", text: "Обучение онлайн и дополнительный месяц личной обратной связи. Именная печать — в подарок.", featured: true },
-  { id: "03", name: "VIP", length: "2 месяца", tagline: "Знания в настоящем деле", text: "Онлайн или офлайн, практика на объекте с Марией и помощь в подборе оборудования." },
+  { id: "03", name: "VIP", length: "2 месяца", tagline: "Знания в настоящем деле", text: "Два месяца сопровождения, онлайн или офлайн, практика на объекте, подбор оборудования и безопасной химии, пакет документов для ИП." },
 ];
 
 const faq = [
@@ -144,8 +144,9 @@ function App() {
             <footer>Участница VIP-наставничества · отзыв из актуального White Glove</footer>
           </motion.blockquote>
           <div className="learning-proof__topics">
-            {[["01","Технология уборки"],["02","Документы и процессы"],["03","Подбор команды и первые шаги"]].map(([n,label],i)=><Reveal key={n} delay={i*motionTokens.duration.fast*.35}><motion.div className="learning-proof__topic" whileHover={reduced?undefined:{x:8}} transition={springs.snappy}><span>{n}</span><strong>{label}</strong><span aria-hidden="true">↗</span></motion.div></Reveal>)}
+            {[["01","Технология уборки и практика"],["02","Документы для ИП, оборудование и химия"],["03","Подбор команды и первые шаги"]].map(([n,label],i)=><Reveal key={n} delay={i*motionTokens.duration.fast*.35}><motion.div className="learning-proof__topic" whileHover={reduced?undefined:{x:8}} transition={springs.snappy}><span>{n}</span><strong>{label}</strong><span aria-hidden="true">↗</span></motion.div></Reveal>)}
           </div>
+          <p className="learning-proof__note">В том же Highlight участница рассказывает о 10 объектах за 10 дней и первых коммерческих заявках. Это её личный опыт, а не обещание результата.</p>
         </div>
       </section>
 
