@@ -3,31 +3,31 @@ import { motion, useReducedMotion } from "framer-motion";
 
 const MARIA = "https://www.instagram.com/maria.manukyannn/";
 const BRAND = "https://www.instagram.com/cleaning_white_glove/";
-const contact = (topic = "") => `${MARIA}?igsh=whiteglow${topic ? `&topic=${encodeURIComponent(topic)}` : ""}`;
+const DM = "https://ig.me/m/maria.manukyannn";
 
-const learning = [
-  { n: "01", title: "Увидеть возможности", text: "Разобраться, с чего начать в клининге и как превратить идею в работающий план.", icon: "◌" },
-  { n: "02", title: "Собрать систему", text: "Понять, какие решения нужны, чтобы уверенно выстроить собственное дело.", icon: "⌘" },
-  { n: "03", title: "Расти осознанно", text: "Найти следующий шаг для действующего бизнеса — с учётом вашей ситуации.", icon: "↗" },
+const routes = [
+  { n: "01", title: "Начать с нуля", text: "Понять, как устроен клининг как бизнес, и собрать основу без прыжков в неизвестность.", tag: "ПЕРВЫЙ ШАГ" },
+  { n: "02", title: "Выстроить систему", text: "Разложить по полкам процессы, задачи и решения, которые держат компанию каждый день.", tag: "СИСТЕМА" },
+  { n: "03", title: "Усилить практику", text: "Побывать на реальном объекте с Марией и увидеть работу команды вблизи.", tag: "В ПОЛЕ" },
 ];
 
-const formats = [
-  { n: "01", name: "Групповой", label: "САМОСТОЯТЕЛЬНЫЙ ТЕМП", term: "1 месяц", text: "Войти в тему и разобраться в основах в своём ритме.", points: ["Обучение онлайн", "Без обратной связи", "Именная печать в подарок"], theme: "light" },
-  { n: "02", name: "Индивидуальный", label: "БОЛЬШЕ ЛИЧНОГО ВНИМАНИЯ", term: "2 месяца", text: "Проходить обучение с дополнительной поддержкой и обратной связью.", points: ["Обучение онлайн", "Дополнительный месяц с обратной связью", "Именная печать в подарок"], theme: "featured" },
-  { n: "03", name: "VIP", label: "МАКСИМУМ СОПРОВОЖДЕНИЯ", term: "2 месяца", text: "Получить опыт на объекте рядом с Марией и перейти к практике.", points: ["Онлайн или офлайн", "Практика на объекте с личным сопровождением", "Закупка пылесоса и парогенератора"], theme: "light" },
+const programs = [
+  { n: "01", title: "Групповой", duration: "1 месяц", intro: "Войти в тему в комфортном темпе.", bullets: ["Обучение онлайн", "Самостоятельный темп, без обратной связи", "Именная печать в подарок"], badge: "САМОСТОЯТЕЛЬНЫЙ СТАРТ" },
+  { n: "02", title: "Индивидуальный", duration: "2 месяца", intro: "Разбирать свой путь с личной поддержкой.", bullets: ["Обучение онлайн", "Дополнительный месяц обратной связи", "Именная печать в подарок"], badge: "БОЛЬШЕ ВНИМАНИЯ", featured: true },
+  { n: "03", title: "VIP", duration: "2 месяца", intro: "Соединить знания с настоящей практикой.", bullets: ["Онлайн или офлайн", "Практика на объекте рядом с Марией", "Подбор пылесоса и парогенератора"], badge: "ОТ ЗНАНИЙ К ДЕЛУ" },
 ];
 
-const faqs = [
-  ["Я пока только думаю о клининговом бизнесе. Мне подойдёт?", "Да. Обучение подходит тем, кто хочет начать с нуля, и владельцам действующего клинингового бизнеса."],
-  ["Чем отличаются форматы?", "Участием и поддержкой: от самостоятельного группового обучения до индивидуальной обратной связи и VIP-практики на объекте."],
-  ["Сколько стоит обучение?", "Актуальную стоимость, даты и условия Мария сообщит лично в Instagram."],
+const questions = [
+  ["Можно прийти без опыта?", "Да. Обучение подходит тем, кто только присматривается к клинингу, и тем, кто уже развивает свою компанию."],
+  ["В чём разница между программами?", "В количестве личного сопровождения: групповой формат — самостоятельный, индивидуальный включает обратную связь, а VIP добавляет практику на объекте."],
+  ["Где узнать стоимость и даты?", "Напишите Марии в Instagram — она расскажет о содержании, ближайшем наборе и актуальных условиях."],
 ];
 
-function Arrow({ diagonal = false }) { return <span aria-hidden="true" className="arrow">{diagonal ? "↗" : "→"}</span>; }
+function Arrow({ up = false }) { return <span aria-hidden="true" className="arrow">{up ? "↗" : "→"}</span>; }
 
 function Reveal({ children, className = "", delay = 0 }) {
   const reduced = useReducedMotion();
-  return <motion.div className={className} initial={reduced ? false : { opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.16 }} transition={{ duration: reduced ? 0 : 0.55, delay, ease: [0.22, 1, 0.36, 1] }}>{children}</motion.div>;
+  return <motion.div className={className} initial={reduced ? false : { opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.16 }} transition={{ duration: reduced ? 0 : .5, delay, ease: [0.22, 1, .36, 1] }}>{children}</motion.div>;
 }
 
 function App() {
@@ -36,47 +36,38 @@ function App() {
   return <div className="site" id="top">
     <a className="skip-link" href="#main">К основному содержанию</a>
     <header className="header"><div className="header__inner">
-      <a className="brand" href="#top" aria-label="WhiteGlow — на главную"><span className="brand__mark">W<span>.</span></span><span className="brand__name">WhiteGlow<small>ШКОЛА КЛИНИНГОВОГО БИЗНЕСА</small></span></a>
+      <a className="brand" href="#top" aria-label="WhiteGlow — главная"><span className="brand__glyph">W<span>✳</span></span><span className="brand__word">whiteglow<small>НАСТАВНИЧЕСТВО В КЛИНИНГЕ</small></span></a>
       <button className={`menu-toggle ${menuOpen ? "is-open" : ""}`} aria-label={menuOpen ? "Закрыть меню" : "Открыть меню"} aria-expanded={menuOpen} aria-controls="navigation" onClick={() => setMenuOpen(!menuOpen)}><span/><span/></button>
-      <nav id="navigation" className={`navigation ${menuOpen ? "is-open" : ""}`} aria-label="Главное меню"><a href="#result" onClick={close}>Чему научитесь</a><a href="#formats" onClick={close}>Форматы</a><a href="#maria" onClick={close}>О Марии</a><a href="#questions" onClick={close}>Вопросы</a></nav>
-      <a className="button button--small header__cta" href={contact("форматы")}>Обсудить обучение <Arrow diagonal/></a>
+      <nav id="navigation" className={`navigation ${menuOpen ? "is-open" : ""}`} aria-label="Главное меню"><a href="#what" onClick={close}>Чему научим</a><a href="#programs" onClick={close}>Программы</a><a href="#maria" onClick={close}>О наставнике</a><a href="#faq" onClick={close}>Вопросы</a></nav>
+      <a className="header__link" href={DM}>Поговорить с Марией <Arrow up/></a>
     </div></header>
 
     <main id="main">
-      <section className="hero">
-        <div className="hero__grid">
-          <div className="hero__copy">
-            <p className="eyebrow"><span className="eyebrow__dot"/> ОТ ПЕРВОГО ШАГА ДО СВОЕГО ДЕЛА</p>
-            <h1>В клининге<br/>можно <em>больше.</em></h1>
-            <p className="hero__lead">Покажем, как построить клининговый бизнес — от идеи до уверенной практики. Знания Марии, личный опыт и формат поддержки, который подходит именно вам.</p>
-            <div className="hero__actions"><a className="button button--dark" href="#formats">Найти свой формат <Arrow/></a><a className="text-link" href={BRAND} target="_blank" rel="noreferrer">Посмотреть клининг White Glove <Arrow diagonal/></a></div>
-            <div className="hero__proof"><div className="proof-avatars" aria-hidden="true"><span>W</span><span>M</span><span>+</span></div><p><strong>Реальный опыт — в основу обучения</strong><br/>Практика клининговой компании White Glove</p></div>
-          </div>
-          <div className="hero__visual"><img className="hero__image" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1500&q=85" alt="Светлый, ухоженный интерьер дома" fetchPriority="high"/><div className="hero__image-wash"/><div className="hero__floating"><span className="floating__spark">✳</span><span>ИЗ ОПЫТА<br/><strong>WHITE GLOVE</strong></span></div><div className="hero__caption"><span>НЕ ПРОСТО УБОРКА.</span><span>ДЕЛО, КОТОРОЕ МОЖНО ПОСТРОИТЬ.</span></div><span className="hero__vertical">WHITEGLOW · ОБУЧЕНИЕ И НАСТАВНИЧЕСТВО</span></div>
+      <section className="hero"><div className="hero__inner">
+        <div className="hero__eyebrow"><span/> WHITE GLOVE · ПРАКТИКА И НАСТАВНИЧЕСТВО <span>ЕКАТЕРИНБУРГ / ONLINE</span></div>
+        <div className="hero__layout"><div className="hero__copy"><h1>Чистота<br/>— это <em>бизнес.</em></h1><p className="hero__lead">Научитесь строить дело в клининге на реальном опыте White Glove. От первых решений до работы на настоящем объекте.</p><div className="hero__actions"><a className="button button--cream" href="#programs">Выбрать программу <Arrow/></a><a className="hero__secondary" href={BRAND} target="_blank" rel="noreferrer">Смотреть работу White Glove <Arrow up/></a></div><div className="hero__note"><span className="hero__note-mark">✳</span><p><strong>Мария Манукян</strong><br/>Основатель White Glove и ваш наставник</p></div></div>
+          <div className="hero__photo"><img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=1500&q=88" alt="Специалист по уборке тщательно очищает стеклянную поверхность" fetchPriority="high"/><div className="hero__photo-shade"/><div className="hero__photo-top"><span>УМЕНИЕ · СИСТЕМА · РОСТ</span><span>01 / 03</span></div><div className="hero__photo-bottom"><span>ЧИСТАЯ РАБОТА</span><span>НАЧИНАЕТСЯ С ЗНАНИЯ</span></div><div className="hero__roundel"><span>ОБУЧЕНИЕ<br/>ИЗНУТРИ</span><b>✳</b></div></div>
         </div>
-        <div className="hero__bottom"><span>01 — 03</span><span>ПРОЛИСТАЙТЕ, ЧТОБЫ НАЙТИ СВОЙ СЛЕДУЮЩИЙ ШАГ</span><a href="#result" aria-label="Перейти к разделу Чему вы научитесь">↓</a></div>
-      </section>
-
-      <section className="result section-wrap" id="result"><Reveal className="section-heading"><p className="eyebrow"><span className="eyebrow__dot"/> ЧТО ВЫ ЗАБЕРЁТЕ С СОБОЙ</p><h2>Не просто посмотреть.<br/><em>Понять, что делать.</em></h2><p className="section-heading__lead">Путь в клининговом бизнесе у каждого свой. Обучение помогает увидеть варианты, разложить их по шагам и выбрать направление с опорой на опыт.</p></Reveal>
-        <div className="learning-grid">{learning.map((item, i) => <Reveal className="learning-card" delay={i * .07} key={item.n}><div className="learning-card__top"><span>{item.n}</span><span aria-hidden="true">{item.icon}</span></div><h3>{item.title}</h3><p>{item.text}</p></Reveal>)}</div>
-        <Reveal className="manifesto"><div className="manifesto__orb" aria-hidden="true">W</div><div><p className="eyebrow">ОПОРА НА ПРАКТИКУ</p><p className="manifesto__text">Делимся тем, что прошли сами.<br/><em>Помогаем построить ваш путь.</em></p></div><a href={BRAND} target="_blank" rel="noreferrer" aria-label="Открыть Instagram White Glove"><Arrow diagonal/></a></Reveal>
-      </section>
-
-      <section className="formats" id="formats"><div className="section-wrap"><Reveal className="formats__intro"><div><p className="eyebrow"><span className="eyebrow__dot"/> ТРИ ФОРМАТА. ОДНА ЦЕЛЬ.</p><h2>Выберите свою<br/><em>степень участия.</em></h2></div><p>Начните с того объёма поддержки, который подходит вам сейчас. Стоимость и ближайший набор уточняйте у Марии.</p></Reveal>
-        <div className="format-grid">{formats.map((item, i) => <Reveal key={item.n} delay={i * .08}><article className={`format-card format-card--${item.theme}`}><div className="format-card__top"><span>{item.n} / WHITEGLOW</span><span className="format-card__glyph" aria-hidden="true">{["◌", "✳", "✦"][i]}</span></div><p className="format-card__label">{item.label}</p><h3>{item.name}</h3><p className="format-card__term">{item.term} <span>НАСТАВНИЧЕСТВА</span></p><p className="format-card__description">{item.text}</p><ul>{item.points.map(point => <li key={point}><span aria-hidden="true">✓</span>{point}</li>)}</ul><a className="format-card__link" href={contact(item.name)}><span>Узнать про формат</span><Arrow diagonal/></a></article></Reveal>)}</div>
-        <p className="formats__note">Содержание и условия программ уточняются перед записью. Мы поможем понять, какой формат подходит вашему этапу.</p>
+        <a className="hero__scroll" href="#what"><span>ЛИСТАЙТЕ К ВОЗМОЖНОСТЯМ</span><i>↓</i></a>
       </div></section>
 
-      <section className="about" id="maria"><div className="section-wrap about__grid"><Reveal className="about__visual"><img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=85" loading="lazy" alt="Детали светлого интерьера после заботливого ухода"/><div className="about__seal"><span>WG</span><small>ОПЫТ<br/>В ДЕЛЕ</small></div><span className="about__caption">@CLEANING_WHITE_GLOVE · INSTAGRAM</span></Reveal><Reveal className="about__copy"><p className="eyebrow"><span className="eyebrow__dot"/> МАРИЯ МАНУКЯН · WHITE GLOVE</p><h2>Я знаю этот путь<br/><em>изнутри.</em></h2><p>WhiteGlow вырос из практического опыта клининговой компании White Glove. Мария Манукян делится знаниями и помогает тем, кто хочет начать своё дело или вывести существующий бизнес на новый уровень.</p><p>Без универсальных обещаний: сначала ваша ситуация, потом — формат и следующие шаги.</p><a className="button button--outline" href={BRAND} target="_blank" rel="noreferrer">Профиль White Glove <Arrow diagonal/></a></Reveal></div></section>
+      <section className="what" id="what"><div className="what__intro"><Reveal><p className="eyebrow"><span/> НЕ ТЕОРИЯ В ВАКУУМЕ</p><h2>Вот что можно<br/><em>уметь после.</em></h2></Reveal><Reveal className="what__aside"><span className="what__asterisk">✳</span><p>Показываем бизнес<br/>со всех рабочих сторон.</p><span>ПРОВЕДЁМ ОТ ИДЕИ К ПРАКТИКЕ</span></Reveal></div>
+        <div className="route-list">{routes.map((route, i) => <Reveal className={`route route--${i + 1}`} delay={i * .06} key={route.n}><span className="route__number">{route.n}</span><div className="route__main"><span className="route__tag">{route.tag}</span><h3>{route.title}</h3></div><p>{route.text}</p><a href="#programs" aria-label={`Узнать о программе: ${route.title}`}><Arrow up/></a></Reveal>)}</div>
+      </section>
 
-      <section className="steps section-wrap"><Reveal><p className="eyebrow"><span className="eyebrow__dot"/> НАЧАТЬ ПРОСТО</p><h2>Сначала — <em>разговор.</em></h2></Reveal><div className="steps-grid">{[["01","Напишите Марии","Расскажите, на каком вы этапе и что хотите узнать."],["02","Сверим ожидания","Обсудим цель, содержание и доступные форматы."],["03","Выберите свой путь","Решите, какой уровень поддержки подходит вам сейчас."]].map(([n,title,text],i)=><Reveal className="step" delay={i*.07} key={n}><span>{n}</span><h3>{title}</h3><p>{text}</p></Reveal>)}</div></section>
+      <section className="field"><div className="field__picture"><img src="https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?auto=format&fit=crop&w=1300&q=85" alt="Профессиональное оборудование для ухода за домом" loading="lazy"/><span>ОПЫТ WHITE GLOVE / НАСТОЯЩАЯ РАБОТА</span></div><Reveal className="field__copy"><p className="eyebrow eyebrow--light"><span/> УЧИМСЯ НА РЕАЛЬНОМ ОПЫТЕ</p><h2>Изнутри.<br/><em>По-настоящему.</em></h2><p>WhiteGlow — наставничество на основе опыта действующей клининговой компании White Glove. Здесь можно увидеть, как знания превращаются в действия: от устройства работы до практики на объекте.</p><a className="field__link" href={BRAND} target="_blank" rel="noreferrer">Заглянуть в White Glove <Arrow up/></a><span className="field__index">ПОДХОД<br/>WHITEGLOW <b>02—04</b></span></Reveal></section>
 
-      <section className="faq section-wrap" id="questions"><Reveal className="faq__intro"><p className="eyebrow"><span className="eyebrow__dot"/> ХОРОШИЕ ВОПРОСЫ</p><h2>До старта<br/><em>можно спросить.</em></h2><p>Не уверены, какой формат выбрать? Напишите — поможем сориентироваться.</p><a className="text-link" href={contact("вопросы")}>Спросить Марию <Arrow diagonal/></a></Reveal><div className="faq-list">{faqs.map(([question,answer],i)=><Reveal delay={i*.06} key={question}><details className="faq-item"><summary><span>{question}</span><span className="faq-toggle" aria-hidden="true"/></summary><p>{answer}</p></details></Reveal>)}</div></section>
+      <section className="programs" id="programs"><div className="programs__inner"><Reveal className="programs__head"><div><p className="eyebrow"><span/> НАШЕ НАСТАВНИЧЕСТВО</p><h2>Ваш темп.<br/><em>Ваш масштаб.</em></h2></div><p>Три уровня поддержки, одна основа — опыт команды. Подберите подходящий формат и обсудите детали лично.</p></Reveal><div className="programs__grid">{programs.map((program, i) => <Reveal delay={i * .07} key={program.n}><article className={`program ${program.featured ? "program--feature" : ""}`}><div className="program__top"><span>{program.n} <i> / </i> WHITEGLOW</span><span>{program.badge}</span></div><p className="program__duration">{program.duration} <span>ПРОГРАММА</span></p><h3>{program.title}</h3><p className="program__intro">{program.intro}</p><ul>{program.bullets.map(bullet => <li key={bullet}><span>✳</span>{bullet}</li>)}</ul><a href={DM} className="program__link"><span>Спросить об этом формате</span><Arrow up/></a></article></Reveal>)}</div><p className="programs__fine">Стоимость, даты, содержание и доступность практики уточняйте у Марии в Instagram.</p></div></section>
 
-      <section className="contact"><div className="contact__inner section-wrap"><Reveal><p className="eyebrow eyebrow--light"><span className="eyebrow__dot"/> ВАШ СЛЕДУЮЩИЙ ШАГ</p><h2>Большие дела<br/>начинаются <em>с ясности.</em></h2><p>Расскажите Марии, что хотите изменить. Вместе подберёте формат и обсудите, что входит в обучение.</p><a className="button button--lime" href={contact("первый шаг")}>Обсудить обучение в Instagram <Arrow diagonal/></a></Reveal><div className="contact__stamp" aria-hidden="true"><span>WHITE<br/>GLOVE</span><i>✳</i></div></div></section>
+      <section className="mentor" id="maria"><div className="mentor__picture"><img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1200&q=85" alt="Светлая кухня после профессионального ухода" loading="lazy"/><span className="mentor__seal">WG <i>✳</i></span><span className="mentor__credit">ПРАКТИКА КОМАНДЫ WHITE GLOVE</span></div><Reveal className="mentor__copy"><p className="eyebrow"><span/> НАСТАВНИК · ПРАКТИК</p><h2>Мария<br/><em>Манукян.</em></h2><p>Основатель клининговой компании White Glove. На обучении Мария делится практическим опытом и помогает выбрать следующий шаг под вашу цель.</p><p>Без обещаний лёгкого успеха. С честным разговором о работе, знаниях и вашем пути.</p><a className="button button--outline" href={MARIA} target="_blank" rel="noreferrer">Познакомиться в Instagram <Arrow up/></a></Reveal></section>
+
+      <section className="faq" id="faq"><div className="faq__head"><p className="eyebrow"><span/> ПЕРЕД ТЕМ КАК НАЧАТЬ</p><h2>Спрашивать<br/><em>это нормально.</em></h2><p>Детали программы зависят от формата и ближайшего набора.</p><a href={DM}>Задать свой вопрос <Arrow up/></a></div><div className="faq__list">{questions.map(([question, answer], i) => <Reveal key={question} delay={i * .05}><details><summary><span>{question}</span><i aria-hidden="true">+</i></summary><p>{answer}</p></details></Reveal>)}</div></section>
+
+      <section className="last"><div className="last__inner"><Reveal><p className="eyebrow eyebrow--light"><span/> НАЧНЁМ С ВАШЕЙ ЦЕЛИ</p><h2>Один разговор.<br/><em>Много ясности.</em></h2><p>Расскажите, где вы сейчас и чего хотите от клинингового дела. Мария поможет обсудить подходящий путь.</p><a className="button button--cream" href={DM}>Написать Марии <Arrow up/></a></Reveal><div className="last__seal" aria-hidden="true"><span>WHITE<br/>GLOVE</span><i>✳</i></div></div></section>
     </main>
-    <footer className="footer"><div className="footer__inner section-wrap"><a className="brand brand--footer" href="#top"><span className="brand__mark">W<span>.</span></span><span className="brand__name">WhiteGlow<small>ШКОЛА КЛИНИНГОВОГО БИЗНЕСА</small></span></a><p>Мария Манукян · Наставничество в клининговом бизнесе</p><a href={MARIA} target="_blank" rel="noreferrer">Instagram Марии <Arrow diagonal/></a><a href={BRAND} target="_blank" rel="noreferrer">White Glove <Arrow diagonal/></a><span>© WhiteGlow</span></div></footer>
-    <a className="mobile-cta" href={contact("обучение")}>Обсудить обучение <Arrow diagonal/></a>
+
+    <footer className="footer"><a className="brand brand--footer" href="#top"><span className="brand__glyph">W<span>✳</span></span><span className="brand__word">whiteglow<small>НАСТАВНИЧЕСТВО В КЛИНИНГЕ</small></span></a><p>Практика команды White Glove</p><a href={MARIA} target="_blank" rel="noreferrer">Instagram Марии <Arrow up/></a><a href={BRAND} target="_blank" rel="noreferrer">Instagram White Glove <Arrow up/></a><span>© WhiteGlow</span></footer>
+    <a className="mobile-cta" href={DM}>Написать Марии <Arrow up/></a>
   </div>;
 }
 
