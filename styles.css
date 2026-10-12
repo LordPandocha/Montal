@@ -20,7 +20,7 @@
 
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:92px;overflow-x:clip}
-body{min-width:320px;margin:0;color:var(--ink);background:var(--paper);font-family:var(--sans);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+body{min-width:320px;margin:0;overflow-x:clip;color:var(--ink);background:var(--paper);font-family:var(--sans);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 body,button,a{font-family:var(--sans)}
 a{color:inherit;text-decoration:none}
 img{display:block;width:100%;height:100%;object-fit:cover}
@@ -90,7 +90,7 @@ h1,h2,h3,p,figure{margin-top:0}
 .approach{display:grid;grid-template-columns:.92fr 1.08fr;gap:clamp(50px,9vw,135px);align-items:start}
 .section h2,.case-copy h2,.courses-heading h2,.faq-layout h2{font-size:clamp(48px,5.3vw,70px)}
 .section-intro .section-lead,.case-copy .section-lead,.courses-heading .section-lead,.mentor-copy .section-lead{margin-top:20px;font-size:17px}
-.steps{padding-top:9px}
+.steps{overflow-x:clip;padding-top:9px}
 .step{display:grid;grid-template-columns:44px 1fr 28px;align-items:center;gap:17px;padding:23px 0;border-top:1px solid var(--line);transition:padding .3s var(--ease)}
 .step:last-of-type{border-bottom:1px solid var(--line)}
 .step:hover{padding-inline:8px}
