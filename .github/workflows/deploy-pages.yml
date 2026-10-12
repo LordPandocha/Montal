@@ -31,17 +31,17 @@ jobs:
         run: npm run build
       - name: Синхронизировать готовые файлы для GitHub Pages
         run: |
-          rm -rf assets
+          rm -rf assets instagram
           mkdir -p assets
           cp -R dist/assets/. assets/
+          cp -R dist/instagram instagram
           cp dist/index.html index.html
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add index.html assets
+          git add index.html assets instagram
           if git diff --cached --quiet; then
             echo "Готовая версия уже синхронизирована."
             exit 0
           fi
           git commit -m "Update compiled WhiteGlow site [compiled site]"
           git push origin HEAD:main
-
