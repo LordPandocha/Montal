@@ -356,7 +356,7 @@ h1,h2,h3,p,figure{margin-top:0}
 .document-hidden .ribbon-track,.document-hidden .hero-seal,.document-hidden .hero-visual::before,.document-hidden .hero-visual::after,.document-hidden .final-cta .final-glow{animation-play-state:paused!important}
 @keyframes word-arrive{from{opacity:0;transform:translateY(110%) rotate(6deg)}to{opacity:1;transform:translateY(0) rotate(0)}}
 @keyframes ribbon-flow{to{transform:translateX(-50%)}}
-@keyframes button-sheen{to{left:135%}}
+@keyframes button-sheen{to{transform:translateX(560%) rotate(25deg)}}
 @media(max-width:760px){.motion-ribbon{padding:17px 0}.hero-photo{rotate:0deg}.course-card{transform-style:flat}}
 @media(prefers-reduced-motion:reduce){.ribbon-track{animation:none}.word-motion{opacity:1!important;transform:none!important}.hero-photo,.case-image img,.mentor-signature>span{translate:none;rotate:none}.case-image{clip-path:none!important}}
 
@@ -389,3 +389,25 @@ h1,h2,h3,p,figure{margin-top:0}
 @keyframes teaser-star{to{rotate:360deg}}
 @media(max-width:760px){.hero-flight{padding:7px 11px;gap:7px;font-size:8px}.hero-flight span{width:23px;height:23px;font-size:12px}.hero-flight-one{left:-3%;top:12%}.hero-flight-two{right:-2%;bottom:23%}.brand-teaser-inner{grid-template-columns:1fr}.brand-teaser .button{justify-content:space-between;width:min(100%,320px);margin-top:20px}.brand-teaser-star{top:15%;right:0;font-size:130px}}
 @media(prefers-reduced-motion:reduce){.hero-flight,.brand-teaser::before,.brand-teaser-star{animation:none}}
+
+@media(prefers-reduced-motion:no-preference){
+  .has-motion .review-quote{transform:translate3d(-65px,50px,0) rotate(-4deg) scale(.94)}
+  .has-motion .review-quote.is-visible{transform:perspective(900px) rotateX(var(--tilt-x,0deg)) rotateY(var(--tilt-y,0deg))}
+  .has-motion .student-result{transform:translate3d(65px,50px,0) rotate(4deg) scale(.94)}
+  .has-motion .student-result.is-visible{transform:none}
+  .student-result .result-number{transform-origin:left bottom}
+  .student-result.is-visible .result-number{animation:result-pop .9s .2s cubic-bezier(.16,1,.3,1) both}
+  .hero-visual::after{background:radial-gradient(circle at var(--pointer-x,50%) var(--pointer-y,50%),#c1d7a680,transparent 64%)}
+  .hero-flight{animation-play-state:paused}
+  .hero-visual.motion-active .hero-flight{animation-play-state:running}
+  .brand-teaser:not(.motion-active)::before,.brand-teaser:not(.motion-active) .brand-teaser-star{animation-play-state:paused}
+}
+@media(hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){
+  .button{translate:var(--magnet-x,0px) var(--magnet-y,0px);transition:translate .22s var(--ease),background .25s,box-shadow .25s}
+  .hero-flight-one{translate:var(--magnet-x,0px) var(--magnet-y,0px)}
+}
+.document-hidden .hero-flight,.document-hidden .brand-teaser::before,.document-hidden .brand-teaser-star{animation-play-state:paused!important}
+@keyframes result-pop{from{opacity:0;transform:translateY(32px) rotate(-6deg) scale(.85)}to{opacity:1;transform:none}}
+@media(max-width:760px){.has-motion .review-quote,.has-motion .student-result{transform:translateY(45px) scale(.96)}}
+@media(prefers-reduced-motion:reduce){.button{translate:none!important}.has-motion .review-quote,.has-motion .student-result{transform:none!important}}
+
