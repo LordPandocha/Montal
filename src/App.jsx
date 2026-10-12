@@ -20,8 +20,8 @@ function Reveal({ children, className = "", delay = 0 }) {
 
 function Brand() {
   return (
-    <a className="brand" href="#top" aria-label="MONTAL — на главную">
-      <span className="brand__word">MONTAL</span>
+    <a className="brand" href="#top" aria-label="WhiteGlow — на главную">
+      <span className="brand__word">WhiteGlow</span>
       <span className="brand__dot" aria-hidden="true" />
     </a>
   );
@@ -169,22 +169,22 @@ function App() {
             </Reveal>
             <Reveal delay={0.16}>
               <div className="hero__footnote">
-                <span className="hero__footnote-mark" aria-hidden="true">M.</span>
+                <span className="hero__footnote-mark" aria-hidden="true">W.</span>
                 <p>Сначала определяем главное.<br />Затем собираем план действий.</p>
               </div>
             </Reveal>
           </div>
 
           <Reveal className="hero__visual" delay={0.1}>
-            <div className="hero-photo hero-photo--brand" role="img" aria-label="Фирменная графика MONTAL">
+            <div className="hero-photo hero-photo--brand" role="img" aria-label="Фирменная графика WhiteGlow">
               <div className="hero-art__grid" aria-hidden="true" />
               <div className="hero-art__orb hero-art__orb--large" aria-hidden="true" />
               <div className="hero-art__orb hero-art__orb--small" aria-hidden="true" />
               <div className="hero-photo__topline">
-                <span>01 / MONTAL</span>
+                <span>01 / WHITEGLOW</span>
                 <span>ОБУЧЕНИЕ · 3 ФОРМАТА</span>
               </div>
-              <div className="hero-art__monogram" aria-hidden="true">M<span>.</span></div>
+              <div className="hero-art__monogram" aria-hidden="true">W<span>.</span></div>
               <div className="hero-photo__caption">
                 <span className="hero-photo__caption-label">ВАШ СЛЕДУЮЩИЙ ШАГ</span>
                 <strong>Выберите<br />свой формат.</strong>
@@ -192,8 +192,8 @@ function App() {
               <div className="hero-art__side-label" aria-hidden="true">ЯСНОСТЬ · ФОКУС · ДЕЙСТВИЕ</div>
             </div>
             <div className="hero-stamp" aria-label="Индивидуальный разбор и план действий">
-              <span className="hero-stamp__ring">MONTAL · MONTAL · MONTAL ·</span>
-              <span className="hero-stamp__center">M<span>.</span></span>
+              <span className="hero-stamp__ring">WHITEGLOW · WHITEGLOW ·</span>
+              <span className="hero-stamp__center">W<span>.</span></span>
             </div>
             <div className="hero__visual-note">
               <span className="hero__visual-line" />
@@ -308,7 +308,7 @@ function App() {
         <section className="about">
           <div className="about__inner section-wrap">
             <Reveal className="about__identity">
-              <div className="about__monogram" aria-hidden="true"><span>M</span><i /></div>
+              <div className="about__monogram" aria-hidden="true"><span>W</span><i /></div>
               <div className="about__identity-caption">
                 <span>НАСТАВНИЧЕСТВО</span>
                 <span>КЛИНИНГОВЫЙ БИЗНЕС</span>
@@ -357,7 +357,7 @@ function App() {
               </a>
             </Reveal>
             <div className="contact__aside">
-              <span className="contact__aside-number">M.</span>
+              <span className="contact__aside-number">W.</span>
               <span>ЯСНОСТЬ ВМЕСТО ХАОСА</span>
             </div>
           </div>
@@ -369,7 +369,7 @@ function App() {
           <Brand />
           <p>Мария Манукян <span>·</span> Наставничество в клининговом бизнесе</p>
           <a className="footer__instagram" href={MESSAGE_URL} target="_blank" rel="noreferrer">Instagram <span aria-hidden="true">↗</span></a>
-          <span className="footer__copyright">© MONTAL</span>
+          <span className="footer__copyright">© WhiteGlow</span>
         </div>
       </footer>
     </div>

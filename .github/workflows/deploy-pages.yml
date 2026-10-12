@@ -1,4 +1,4 @@
-name: Сборка сайта MONTAL
+name: Сборка сайта WhiteGlow
 
 on:
   push:
@@ -9,7 +9,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: montal-build
+  group: whiteglow-build
   cancel-in-progress: true
 
 jobs:
@@ -50,5 +50,5 @@ jobs:
             exit 0
           fi
 
-          git commit -m "Update compiled MONTAL site [compiled site]"
+          git commit -m "Update compiled WhiteGlow site [compiled site]"
           git push origin HEAD:main
