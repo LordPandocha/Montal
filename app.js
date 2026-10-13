@@ -94,7 +94,7 @@ window.addEventListener("scroll", () => {
 
 updateProgress();
 
-const motionTargets = document.querySelectorAll(".hero-visual,.case-image,.motion-ribbon,.hero-mobile-ribbon,.final-cta,.mentor-signature,.brand-teaser");
+const motionTargets = document.querySelectorAll(".hero-visual,.case-image,.motion-ribbon,.hero-mobile-ribbon,.final-cta,.mentor-signature,.brand-teaser,.ad-hero-art");
 const visibleMotion = new Set();
 let motionFrame = 0;
 
@@ -189,4 +189,46 @@ document.querySelectorAll(".hero-visual,.button").forEach((element) => {
     element.style.setProperty("--magnet-y", "0px");
   });
 });
+
+const storySection = document.querySelector(".story-section");
+const storyScenes = [...document.querySelectorAll(".story-scene")];
+const storyCounter = document.querySelector(".story-counter span:first-child");
+const storyDesktop = window.matchMedia("(min-width: 900px) and (min-height: 720px)");
+let storyFrame = 0;
+
+function updateStory() {
+  storyFrame = 0;
+  if (!storySection || !storyDesktop.matches || reducedMotion.matches) return;
+  const bounds = storySection.getBoundingClientRect();
+  const distance = Math.max(1, bounds.height - window.innerHeight);
+  const progress = Math.max(0, Math.min(1, -bounds.top / distance));
+  const active = Math.min(storyScenes.length - 1, Math.floor(progress * storyScenes.length));
+  storySection.style.setProperty("--story-progress", progress);
+  storyScenes.forEach((scene, index) => {
+    scene.classList.toggle("is-current", index === active);
+    scene.classList.toggle("is-before", index < active);
+  });
+  if (storyCounter) storyCounter.textContent = String(active + 1).padStart(2, "0");
+}
+
+function scheduleStory() {
+  if (storyFrame || document.hidden || !storySection) return;
+  storyFrame = requestAnimationFrame(updateStory);
+}
+
+function setStoryMode() {
+  if (!storySection) return;
+  const enabled = storyDesktop.matches && !reducedMotion.matches;
+  root.classList.toggle("has-story", enabled);
+  if (enabled) scheduleStory();
+}
+
+if (storySection && storyScenes.length) {
+  storyScenes[0].classList.add("is-current");
+  setStoryMode();
+  window.addEventListener("scroll", scheduleStory, { passive: true });
+  window.addEventListener("resize", setStoryMode, { passive: true });
+  document.addEventListener("visibilitychange", scheduleStory);
+  reducedMotion.addEventListener?.("change", setStoryMode);
+}
 
